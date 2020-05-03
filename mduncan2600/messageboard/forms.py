@@ -1,7 +1,8 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout  # basically, adds a submit button to the form
-from crispy_forms.bootstrap import StrictButton
+from crispy_forms.bootstrap import StrictButton, InlineRadios
+
 
 class NameForm(forms.Form):
     your_name = forms.CharField(label='Your name', max_length=10)
@@ -16,7 +17,7 @@ class MessageForm(forms.Form):
         self.helper = FormHelper()
         self.helper.form_id = 'id-messageForm'
         self.helper.form_method = 'post'
-        self.helper.form_action = 'submit_survey'
+        self.helper.form_action = ''
         self.helper.form_tag = True
         #self.helper.add_input(Submit('submit', 'Submit'))
 
@@ -25,9 +26,12 @@ class MessageForm(forms.Form):
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-8'
         self.helper.layout = Layout(
-            'submitted_by',
+            InlineRadios(
+                'submitted_by',
+                id='radioSubmittedBy'
+            ),
             'message',
-            'i_am_gay',
+            'send_email',
             StrictButton(
                 content="Submit Message",
                 name="btnSubmit",
@@ -37,9 +41,15 @@ class MessageForm(forms.Form):
             ),
         )
 
-    submitted_by = forms.CharField(
+    ANIMAL_CHOICES = (
+        ('1', 'Gorilla'),
+        ('2', 'Lion'),
+        ('3', 'Owl'),
+        ('4', 'Puma'),
+    )
+    submitted_by = forms.ChoiceField(
         label = 'Submitted by Animal',
-        max_length = 20,
+        choices = ANIMAL_CHOICES,
         required = True,
     )
 
@@ -49,10 +59,11 @@ class MessageForm(forms.Form):
         max_length = 1000,
     )
     
-    i_am_gay = forms.BooleanField(
+    send_email = forms.BooleanField(
+        label = "Send Email?",
         required = False,
     )
-
+    
 
 class BandForm(forms.Form):
     """Used for practice. Remove whenever you want."""

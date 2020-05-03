@@ -9,8 +9,8 @@
 {% endblock page_scripts %}
 
 {% block body_content %}
-<h1>Create Message</h1>
-<p><a href="{% url 'messageboard:index' %}">Back to Home</a></p>
+<h1>Add Message</h1>
+<p><a href="{% url 'messageboard:index' %}">View Conversation</a></p>
 
 
 {% crispy message_form message_form.helper %}

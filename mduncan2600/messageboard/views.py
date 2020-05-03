@@ -1,3 +1,5 @@
+import random
+
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.http.request import HttpRequest
 from django.shortcuts import render, get_object_or_404
@@ -27,21 +29,27 @@ message_list.append(Message(3, 'Gail','Hello MysteryShop','MysteryMood!', 'DateT
 message_list.append(Message(4, 'Bill','Hello Softball','SoftballMood!', 'DateTimeNow'))
 
 
+def index(request):
+    context = {
+        'message_list': message_list,
+    }
+    return render(request, 'messageboard/index.html', context)
+
+
 def create(request):
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
             submitted_by = form.cleaned_data['submitted_by']
             message = form.cleaned_data['message']
-            email = form.cleaned_data['email']
-            i_am_gay = form.cleaned_data['i_am_gay']
-            
-            send_mail(' - '.join(['Post Something', submitted_by]),
-                message,
-                EMAIL_HOST_USER, [email],
-                fail_silently=False,
-            )
-            
+            send_email = form.cleaned_data['send_email']
+            if send_email:
+                send_mail(' - '.join(['Post Something', str(random.Random().randint(1, 1000000))]),
+                    ': '.join([submitted_by, message]),
+                    EMAIL_HOST_USER,
+                    ['mduncan2600@gmail.com'],
+                    fail_silently=False,
+                )
             return HttpResponseRedirect('/messageboard/')
     else:
         message_form = MessageForm()
@@ -51,14 +59,6 @@ def create(request):
         return render(request, 'messageboard/create.html', context)
 
 
-def index(request):
-    context = {
-        'album': 'Scenes From A Memory',
-        'message_list': message_list,
-    }
-    return render(request, 'messageboard/index.html', context)
-    
-    
 def edit(request, id):
     print(str(id))
     message = list(filter(lambda x: x.id == id, message_list))[0]

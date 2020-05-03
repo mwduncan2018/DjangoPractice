@@ -24,13 +24,16 @@
 					<span class="icon-bar"></span>
 				</button>
 				
-				<a href="{% url 'messageboard:index' %}">Home</a>
+				<a class="navbar-brand" href="{% url 'messageboard:index' %}">Splash</a>
 				
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="{% url 'messageboard:index' %}">Index</a></li>
-					<li><a href="{% url 'messageboard:index' %}">Demo</a></li>
+					<li><a href="{% url 'messageboard:index' %}">Animal Conversation</a></li>
+					<li><a href="{% url 'messageboard:create' %}">Add Message</a></li>
+					<li><a href="{% url 'messageboard:index' %}">View Animals</a></li>
+					<li><a href="{% url 'messageboard:index' %}">Clear Conversation</a></li>
+					<li><a href="{% url 'messageboard:index' %}">About</a></li>
 				</ul>
 			</div>
 		</div>
@@ -43,7 +46,7 @@
 		
 		<hr />
 		<footer>
-			<p>&copy;&nbsp;2020&nbsp;-&nbsp;mwduncan2018@gmail.com</p>
+			<p>&copy;&nbsp;2020&nbsp;-&nbsp;Post Something</p>
 		</footer>
 
 	</div>

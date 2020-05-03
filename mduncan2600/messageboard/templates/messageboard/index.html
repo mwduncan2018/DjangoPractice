@@ -8,14 +8,10 @@
 {% endblock page_scripts %}
 
 {% block body_content %}
-<h1>
-    Anonymous Message Board
-</h1>
 
-<p>
-	<a href="{% url 'messageboard:create' %}">Create New</a>
-</p>
-<h4>{{ album }}</h4>
+<h1>Animal Conversation</h1>
+<p><a href="{% url 'messageboard:create' %}">Add Message</a></p>
+
 <table class="table">
     <thead>
         <tr>
