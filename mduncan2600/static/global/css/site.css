@@ -25,7 +25,7 @@ textarea {
 }
 
 .customBackground {
-    background-color: #e6ffe6;
+    /* background-color: #e6ffe6; */
 }
 
 .blueForms {
@@ -34,5 +34,5 @@ textarea {
 }
 
 * {
-    outline: 1px solid orange;
+    /* outline: 1px solid orange; */
 }

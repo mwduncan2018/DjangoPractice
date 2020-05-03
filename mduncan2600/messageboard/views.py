@@ -46,7 +46,7 @@ def create(request):
     else:
         message_form = MessageForm()
         context = {
-            'message_form': message_form
+            'message_form': message_form,
         }
         return render(request, 'messageboard/create.html', context)
 

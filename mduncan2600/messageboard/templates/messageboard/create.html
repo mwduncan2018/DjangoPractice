@@ -12,11 +12,8 @@
 <h1>Create Message</h1>
 <p><a href="{% url 'messageboard:index' %}">Back to Home</a></p>
 
-<form action="/messageboard/create/" method="post">
-    {% csrf_token %}
 
-    {% crispy message_form message_form.helper %}
-    
-</form>
+{% crispy message_form message_form.helper %}
+
 
 {% endblock body_content %}
