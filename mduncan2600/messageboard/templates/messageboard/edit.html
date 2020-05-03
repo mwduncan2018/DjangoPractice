@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Create{% endblock title %}
+{% block page_css %}{% endblock page_css %}
+
+{% block page_scripts %}
+<script src="{% static 'messageboard/scripts/edit-page.js' %}"></script>
+{% endblock page_scripts %}
+
+{% block body_content %}
+<h1>Edit Message</h1>
+
+<p><a href="{% url 'messageboard:index' %}">Back to Home</a></p>
+
+<h4>Message Info</h4>
+<p>{{ message.id }}</p>
+<p>{{ message.submitted_by }}</p>
+<p>{{ message.text }}</p>
+<p>{{ message.mood }}</p>
+<p>{{ message.datetime }}</p>
+
+{% endblock body_content %}

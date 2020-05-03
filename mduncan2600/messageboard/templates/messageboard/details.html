@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Create{% endblock title %}
+{% block page_css %}{% endblock page_css %}
+
+{% block page_scripts %}
+<script src="{% static 'messageboard/scripts/details-page.js' %}"></script>
+{% endblock page_scripts %}
+
+{% block body_content %}
+<h1>Message Details</h1>
+
+<p><a href="{% url 'messageboard:index' %}">Back to Home</a></p>
+
+{% endblock body_content %}

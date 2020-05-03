@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+{# Make modifiable head elements #}
+<head>
+	<title>{% block title %}Default{% endblock title %} | mduncan2600</title>
+
+	{% block meta %}
+		{% block meta_charset %}
+			<meta charset="utf-8" />
+		{% endblock meta_charset %}
+
+		{% block meta_contentlanguage %}
+			<meta http-equiv="Content-Language" value="en-US" />
+		{% endblock meta_contentlanguage %}
+
+		{% block meta_viewport %}
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% endblock meta_viewport %}
+	{% endblock meta %}
+
+	{% block css %}
+		{% block css_bootstrap %}
+			<link href="{% static 'css/bootstrap.min.css' %}"
+				  rel="stylesheet" media="screen">
+		{% endblock css_bootstrap %}
+
+		{% block css_site %}
+			<link href="{% static 'css/site.css' %}"
+				  rel="stylesheet" media="screen">			
+		{% endblock css_site %}
+
+		{% block css_page %}
+		{% endblock css_page %}
+	{% endblock css %}	
+</head>
+<body>
+	{% block navigation %}
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					
+					<a href="{% url 'messageboard:index' %}">Home</a>
+					
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="{% url 'messageboard:index' %}">Index</a></li>
+						<li><a href="{% url 'messageboard:index' %}">Demo</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	{% endblock navigation %}
+	
+	{% block body %}
+		<div class="container body-content">
+			{% block body_content %}
+				<p style="color:red">If you see this, something is wrong!</p>
+			{% endblock body_content %}
+		</div>
+	{% endblock body %}
+	
+	{% block footer %}
+        <hr />
+        <footer>
+            <p>&copy;&nbsp;2020&nbsp;-&nbsp;mwduncan2018@gmail.com</p>
+        </footer>	
+	{% endblock footer %}
+	
+	{% block scripts %}
+		{% block scripts_jquery %}
+			<script src="{% static 'scripts/jquery.min.js' %}"></script>
+			<script src="{% static 'scripts/jquery.validate.min.js' %}"></script>
+		{% endblock scripts_jquery %}
+		
+		{% block scripts_bootstrap %}
+			<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+		{% endblock scripts_bootstrap %}
+		
+		{% block scripts_site %}
+			<script src="{% static 'scripts/site.js' %}"></script>
+		{% endblock scripts_site %}
+		
+		{% block scripts_page %}
+		{% endblock scripts_page %}
+	{% endblock scripts %}
+	
+</html>

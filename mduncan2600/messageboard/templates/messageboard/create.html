@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Create{% endblock title %}
+{% block page_css %}{% endblock page_css %}
+
+{% block page_scripts %}
+<script src="{% static 'messageboard/scripts/create-page.js' %}"></script>
+{% endblock page_scripts %}
+
+{% block body_content %}
+<h1>Create Message</h1>
+<p><a href="{% url 'messageboard:index' %}">Back to Home</a></p>
+
+<form action="/messageboard/create/" method="post">
+    {% csrf_token %}
+
+    {% crispy message_form message_form.helper %}
+    
+</form>
+
+{% endblock body_content %}

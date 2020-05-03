@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block page_css %}{% endblock page_css %}
+
+{% block page_scripts %}
+<script src="{% static 'messageboard/scripts/index-page.js' %}"></script>
+{% endblock page_scripts %}
+
+{% block body_content %}
+<h1>
+    Anonymous Message Board
+</h1>
+
+<p>
+	<a href="{% url 'messageboard:create' %}">Create New</a>
+</p>
+<h4>{{ album }}</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Submitted By</th>
+            <th>Text</th>
+            <th>Mood</th>
+            <th>Date/Time</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+    	{% for item in message_list %}
+            <tr id="anonymousMessageRow">
+                <td id="submittedBy">{{ item.submitted_by }}</td>
+                <td id="text">{{ item.text }}</td>
+                <td id="mood">{{ item.mood }}</td>
+                <td id="datetime">{{ item.datetime }}</td>
+                <td>
+                    <span>
+                        <a href="{% url 'messageboard:edit' id=item.id %}">Edit</a> | 
+                        <a href="{% url 'messageboard:details' id=item.id %}">Details</a> | 
+                        <a href="{% url 'messageboard:delete' id=item.id %}">Delete</a>
+                    </span>
+                </td>
+            </tr>
+    	{% endfor %}
+    	
+    </tbody>
+    
+</table>
+
+{% endblock body_content %}
