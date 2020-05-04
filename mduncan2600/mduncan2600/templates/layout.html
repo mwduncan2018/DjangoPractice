@@ -15,29 +15,49 @@
 
 </head>
 <body class="customBackground">
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="{% url 'messageboard:splash' %}">Intro</a>
+		<button class="navbar-toggler" 
+				type="button" 
+				data-toggle="collapse" 
+				data-target="#navbarSupportedContent" 
+				aria-controls="navbarSupportedContent" 
+				aria-expanded="false" 
+				aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li id="linkAnimalConversation" class="nav-item">
+					<a class="nav-link" href="{% url 'messageboard:animal_conversation' %}">Conversation</a>
+				</li>
+				<li id="linkAddPost" class="nav-item">
+					<a class="nav-link" href="{% url 'messageboard:add_post' %}">Add</a>
+				</li>
+				<li id="linkViewAnimals" class="nav-item">
+					<a class="nav-link" href="{% url 'messageboard:view_animals' %}">Animals</a>
+				</li>
+				<li id="linkClearConversation" class="nav-item">
+					<a class="nav-link" href="{% url 'messageboard:clear_conversation' %}">Clear</a>
+				</li>
+				<li id="linkAbout" class="nav-item">
+					<a class="nav-link" href="{% url 'messageboard:about' %}">About</a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" 
+					   type="search" 
+					   placeholder="Search" 
+					   aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+					Search
 				</button>
-				
-				<a class="navbar-brand" href="{% url 'messageboard:index' %}">Splash</a>
-				
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="{% url 'messageboard:index' %}">Animal Conversation</a></li>
-					<li><a href="{% url 'messageboard:create' %}">Add Message</a></li>
-					<li><a href="{% url 'messageboard:index' %}">View Animals</a></li>
-					<li><a href="{% url 'messageboard:index' %}">Clear Conversation</a></li>
-					<li><a href="{% url 'messageboard:index' %}">About</a></li>
-				</ul>
-			</div>
+			</form>
 		</div>
-	</div>
+	</nav>
+
 
 	<div class="container body-content">
 		{% block body_content %}

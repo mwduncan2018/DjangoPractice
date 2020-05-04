@@ -29,14 +29,18 @@ message_list.append(Message(3, 'Gail','Hello MysteryShop','MysteryMood!', 'DateT
 message_list.append(Message(4, 'Bill','Hello Softball','SoftballMood!', 'DateTimeNow'))
 
 
-def index(request):
+def splash(request):
+    return HttpResponse("hey fuck off")
+
+
+def animal_conversation(request):
     context = {
         'message_list': message_list,
     }
-    return render(request, 'messageboard/index.html', context)
+    return render(request, 'messageboard/animalconversation.html', context)
 
 
-def create(request):
+def add_post(request):
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
@@ -56,10 +60,10 @@ def create(request):
         context = {
             'message_form': message_form,
         }
-        return render(request, 'messageboard/create.html', context)
+        return render(request, 'messageboard/addpost.html', context)
 
 
-def edit(request, id):
+def clear_conversation(request):
     print(str(id))
     message = list(filter(lambda x: x.id == id, message_list))[0]
     context = {
@@ -67,18 +71,18 @@ def edit(request, id):
     }
     print(str(message.id))
     print(str(message.text))
-    return render(request, 'messageboard/edit.html', context)
+    return render(request, 'messageboard/clearconversation.html', context)
     
     
-def details(request, id):
+def view_animals(request):
     context = {
         'message': 'hey details page',
     }
-    return render(request, 'messageboard/details.html', context)
+    return render(request, 'messageboard/viewanimals.html', context)
     
     
-def delete(request, id):
+def about(request):
     context = {
         'message': 'hey delete page',
     }
-    return render(request, 'messageboard/delete.html', context)
+    return render(request, 'messageboard/about.html', context)

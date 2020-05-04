@@ -4,13 +4,13 @@
 {% block page_css %}{% endblock page_css %}
 
 {% block page_scripts %}
-<script src="{% static 'messageboard/scripts/index-page.js' %}"></script>
+<script src="{% static 'messageboard/scripts/animal-conversation-page.js' %}"></script>
 {% endblock page_scripts %}
 
 {% block body_content %}
 
 <h1>Animal Conversation</h1>
-<p><a href="{% url 'messageboard:create' %}">Add Message</a></p>
+<p><a href="{% url 'messageboard:add_post' %}">Post Message</a></p>
 
 <table class="table">
     <thead>
@@ -30,13 +30,6 @@
                 <td id="text">{{ item.text }}</td>
                 <td id="mood">{{ item.mood }}</td>
                 <td id="datetime">{{ item.datetime }}</td>
-                <td>
-                    <span>
-                        <a href="{% url 'messageboard:edit' id=item.id %}">Edit</a> | 
-                        <a href="{% url 'messageboard:details' id=item.id %}">Details</a> | 
-                        <a href="{% url 'messageboard:delete' id=item.id %}">Delete</a>
-                    </span>
-                </td>
             </tr>
     	{% endfor %}
     	

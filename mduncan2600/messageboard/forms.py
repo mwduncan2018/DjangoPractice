@@ -37,7 +37,7 @@ class MessageForm(forms.Form):
                 name="btnSubmit",
                 type="submit",
                 value="Submit Message",
-                css_class='btn-default'
+                css_class='btn btn-outline-success my-2 my-sm-0'
             ),
         )
 

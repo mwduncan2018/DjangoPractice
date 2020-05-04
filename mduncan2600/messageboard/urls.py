@@ -6,9 +6,10 @@ from . import views
 app_name = 'messageboard'
 urlpatterns = [
     #path(r'<int:question_id>/', views.detail, name='detail'),
-    path(r'create/', views.create, name='create'),
-    path(r'edit/<int:id>/', views.edit, name='edit'),
-    path(r'details/<int:id>/', views.details, name='details'),
-    path(r'delete/<int:id>/', views.delete, name='delete'),
-    path(r'', views.index, name='index'),
+    path(r'about/', views.about, name='about'),
+    path(r'add/', views.add_post, name='add_post'),
+    path(r'clear/', views.clear_conversation, name='clear_conversation'),
+    path(r'animals/', views.view_animals, name='view_animals'),
+    path(r'conversation/', views.animal_conversation, name='animal_conversation'),
+    path(r'', views.splash, name='splash'),
 ]
