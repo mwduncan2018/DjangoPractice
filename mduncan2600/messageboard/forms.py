@@ -31,7 +31,10 @@ class MessageForm(forms.Form):
                 id='radioSubmittedBy'
             ),
             'message',
-            'send_email',
+            InlineRadios(
+                'mood',
+                id='radioMood'
+            ),
             StrictButton(
                 content="Submit Message",
                 name="btnSubmit",
@@ -48,8 +51,21 @@ class MessageForm(forms.Form):
         ('4', 'Puma'),
     )
     submitted_by = forms.ChoiceField(
-        label = 'Submitted by Animal',
+        label = 'Submitted By',
         choices = ANIMAL_CHOICES,
+        required = True,
+    )
+
+    MOOD_CHOICES = (
+        ('1', 'Happy'),
+        ('2', 'Drunk'),
+        ('3', 'Horny'),
+        ('4', 'Trippin Balls'),
+        ('5', 'Angry'),
+    )
+    mood = forms.ChoiceField(
+        label = 'Mood',
+        choices = MOOD_CHOICES,
         required = True,
     )
 
