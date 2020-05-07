@@ -1,6 +1,20 @@
 import random
 import datetime
 
+#from __future__ import print_function # Python 2/3 compatibility
+import boto3
+import json
+import decimal
+from boto3.dynamodb.conditions import Key, Attr
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, x):
+        if isinstance(x, decimal.Decimal):
+            if x % 1 > 0:
+                return float(x)
+            else:
+                return int(x)
+        return super(DecimalEncoder, self).default(x)
+
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.http.request import HttpRequest
 from django.shortcuts import render, get_object_or_404
@@ -48,6 +62,14 @@ def splash(request):
 
 
 def animal_conversation(request):
+    response = (boto3
+        .resource('dynamodb', region_name='us-east-1')
+        .Table('PostSomethingAnimalConversations')
+        .scan())
+    message_list = []
+    for j in response['Items']:
+        message = Message(j['SubmittedBy'], j['Message'], j['Mood'], j['DateTime'])
+        message_list.append(message)
     context = {
         'message_list': message_list,
     }
@@ -63,6 +85,12 @@ def add_post(request):
             mood = form.cleaned_data['mood']
             now = datetime.datetime.now()
             
+            #######################
+            # Continue here tomorrow
+            # Finish adding to DynamoDB
+            #
+            # Then do the Bootstrap 4 Chat
+            #######################
             
             
             return HttpResponseRedirect('/messageboard/')
