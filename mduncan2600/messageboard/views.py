@@ -55,8 +55,8 @@ def how_to_send_email(submitted_by, message):
             ['mduncan2600@gmail.com'],
             fail_silently=False,
         )
-        
-        
+
+
 def splash(request):
     return HttpResponse("Du!")
 
