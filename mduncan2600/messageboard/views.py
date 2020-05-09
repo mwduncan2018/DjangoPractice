@@ -28,12 +28,13 @@ from .forms import NameForm, MessageForm
 
 
 class Message:
-    def __init__(self, submitted_by, message, mood, datetime):
+    def __init__(self, submitted_by=None, message=None, mood=None, datetime=None, picture=None):
         self.id = id
         self.submitted_by = submitted_by
         self.message = message
         self.mood = mood
         self.datetime = datetime
+        self.picture = picture
     def __str__(self):
         return str(self.message) + " (" + str(self.submitted_by) + ")"
             
@@ -68,7 +69,9 @@ def animal_conversation(request):
         .scan())
     message_list = []
     for j in response['Items']:
-        message = Message(j['SubmittedBy'], j['Message'], j['Mood'], j['DateTime'])
+        x_date = datetime.datetime.strptime(j['DateTime'], '%Y-%m-%d %H:%M:%S.%f')
+        picture = '/static/messageboard/images/God_100_100.png'
+        message = Message(j['SubmittedBy'], j['Message'], j['Mood'], x_date, picture)
         message_list.append(message)
     context = {
         'message_list': message_list,

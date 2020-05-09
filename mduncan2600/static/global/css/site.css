@@ -33,6 +33,64 @@ textarea {
     color: red;
 }
 
-* {
-    /* outline: 1px solid orange; */
+
+
+
+
+.talkbubble {
+    position: relative;
+    /*width: 300px;
+    height: 125px;*/
+    
+    padding: 10px;
+    border-radius: 15px;
+    border: solid lightpink;
+    background: lightpink;
 }
+
+
+/* For the talk bubble on the conversation page */
+.talkbubble:before {
+    content:"";
+    position: absolute;
+    right: 100%;
+    top: 10px;
+    width: 0;
+    height: 0;
+    
+    border-top: 13px solid transparent;
+    border-right: 26px solid lightpink;
+    border-bottom: 13px solid transparent;
+}
+.talkbubble p {
+    display: inline-block;
+    position: inherit;
+    /* width: inherit; */
+    height: inherit;
+    background: inherit;
+    
+    margin: 0;
+    padding: 0;
+    
+    border: none;
+    resize: none;
+}
+
+
+
+/* For the chat background, borders, and margins on the conversation page */
+.animal-chat {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.animal-chat .row {
+    margin: 40px;
+}
+
+
+
+* {
+    outline: 1px solid orange;
+}
+
