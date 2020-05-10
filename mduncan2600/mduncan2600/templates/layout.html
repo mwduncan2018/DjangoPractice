@@ -17,7 +17,10 @@
 <body class="customBackground">
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="{% url 'messageboard:splash' %}">Intro</a>
+		<a id="linkAnimalConversation" class="navbar-brand"
+			href="{% url 'messageboard:animal_conversation' %}">
+			Conversation
+		</a>
 		<button class="navbar-toggler" 
 				type="button" 
 				data-toggle="collapse" 
@@ -30,17 +33,14 @@
 		
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li id="linkAnimalConversation" class="nav-item">
-					<a class="nav-link" href="{% url 'messageboard:animal_conversation' %}">Conversation</a>
-				</li>
 				<li id="linkAddPost" class="nav-item">
-					<a class="nav-link" href="{% url 'messageboard:add_post' %}">Add</a>
+					<a class="nav-link" href="{% url 'messageboard:add_post' %}">Add Post</a>
 				</li>
 				<li id="linkViewAnimals" class="nav-item">
-					<a class="nav-link" href="{% url 'messageboard:view_animals' %}">Animals</a>
+					<a class="nav-link" href="{% url 'messageboard:view_animals' %}">View Animals</a>
 				</li>
 				<li id="linkClearConversation" class="nav-item">
-					<a class="nav-link" href="{% url 'messageboard:clear_conversation' %}">Clear</a>
+					<a class="nav-link" href="{% url 'messageboard:clear_conversation' %}">Clear Conversation</a>
 				</li>
 				<li id="linkAbout" class="nav-item">
 					<a class="nav-link" href="{% url 'messageboard:about' %}">About</a>

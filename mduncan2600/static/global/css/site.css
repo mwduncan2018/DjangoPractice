@@ -38,14 +38,16 @@ textarea {
 
 
 .talkbubble {
+    margin-top: 10px;
     position: relative;
-    /*width: 300px;
-    height: 125px;*/
-    
+    width: 400px;
+
     padding: 10px;
     border-radius: 15px;
-    border: solid lightpink;
-    background: lightpink;
+    border: solid #b1dfe7;
+    background: #b1dfe7;
+    
+    box-shadow: 2px 3px;
 }
 
 
@@ -59,7 +61,7 @@ textarea {
     height: 0;
     
     border-top: 13px solid transparent;
-    border-right: 26px solid lightpink;
+    border-right: 26px solid #b1dfe7;
     border-bottom: 13px solid transparent;
 }
 .talkbubble p {
@@ -88,6 +90,11 @@ textarea {
     margin: 40px;
 }
 
+.animal-chat img {
+    margin-top: 0px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
 
 
 * {

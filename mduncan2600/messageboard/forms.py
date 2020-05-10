@@ -45,10 +45,24 @@ class MessageForm(forms.Form):
         )
 
     ANIMAL_CHOICES = (
-        ('1', 'Gorilla'),
-        ('2', 'Lion'),
-        ('3', 'Owl'),
-        ('4', 'Puma'),
+        ('1', 'Bison'),
+        ('2', 'Black Puma'),
+        ('3', 'Elk'),
+        ('4', 'Fox'),
+        ('5', 'Gorilla'),
+        ('6', 'Grizzly'),
+        ('7', 'Hair Bear'),
+        ('8', 'Kangaroo'),
+        ('9', 'Lion'),
+        ('10', 'Orca'),
+        ('11', 'Otter'),
+        ('12', 'Owl'),
+        ('13', 'Penguin'),
+        ('14', 'Polar Bear'),
+        ('15', 'Puma'),
+        ('16', 'Rabbit'),
+        ('17', 'Wolf'),
+        ('18', 'Yahweh'),
     )
     submitted_by = forms.ChoiceField(
         label = 'Submitted By',

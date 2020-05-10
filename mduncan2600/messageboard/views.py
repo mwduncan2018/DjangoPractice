@@ -1,12 +1,21 @@
 import random
 import datetime
-
-#from __future__ import print_function # Python 2/3 compatibility
-import boto3
 import json
 import decimal
+import boto3
 from boto3.dynamodb.conditions import Key, Attr
+
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.http.request import HttpRequest
+from django.shortcuts import render, get_object_or_404
+from django.template import loader
+from django.urls import reverse
+
+from .forms import NameForm, MessageForm
+
+
 class DecimalEncoder(json.JSONEncoder):
+    """Utility class to make JSON pretty when using AWS"""
     def default(self, x):
         if isinstance(x, decimal.Decimal):
             if x % 1 > 0:
@@ -15,19 +24,9 @@ class DecimalEncoder(json.JSONEncoder):
                 return int(x)
         return super(DecimalEncoder, self).default(x)
 
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.http.request import HttpRequest
-from django.shortcuts import render, get_object_or_404
-from django.template import loader
-from django.urls import reverse
 
-from django.core.mail import send_mail
-from mduncan2600.settings import EMAIL_HOST_USER
-
-from .forms import NameForm, MessageForm
-
-
-class Message:
+class MessageViewModel:
+    """View Model object to pass to the templates"""
     def __init__(self, submitted_by=None, message=None, mood=None, datetime=None, picture=None):
         self.id = id
         self.submitted_by = submitted_by
@@ -37,18 +36,13 @@ class Message:
         self.picture = picture
     def __str__(self):
         return str(self.message) + " (" + str(self.submitted_by) + ")"
-            
-message_list = []
-message_list.append(Message('Rabbit', 'OMG I\'m tripping BALLSSS', 'TRIPPIN BALLS', str(datetime.datetime.now())))
-message_list.append(Message('Rabbit', 'Ur so gay, Lion', 'TRIPPING BALLS', str(datetime.datetime.now())))
-message_list.append(Message('Lion', '>:O', 'ANGRY', str(datetime.datetime.now())))
-message_list.append(Message('Grizzly', 'Dude, Lion just ate Rabbit', 'DRUNK', str(datetime.datetime.now())))
-message_list.append(Message('Owl', 'It is a beautiful day for perching', 'HAPPY', str(datetime.datetime.now())))
-message_list.append(Message('Grizzly', 'Shut up you fag owl I\'m tired of ur shit', 'DRUNK', str(datetime.datetime.now())))
 
 
 def how_to_send_email(submitted_by, message):
-    send_email = True
+    """Demo of how to send email"""
+    from django.core.mail import send_mail
+    from mduncan2600.settings import EMAIL_HOST_USER
+    send_email = False
     if send_email:
         send_mail(' - '.join(['Post Something', str(random.Random().randint(1, 1000000))]),
             ': '.join([submitted_by, message]),
@@ -63,16 +57,43 @@ def splash(request):
 
 
 def animal_conversation(request):
+    
+    # Get the data from AWS DynamoDB
     response = (boto3
         .resource('dynamodb', region_name='us-east-1')
         .Table('PostSomethingAnimalConversations')
         .scan())
+        
+    # Put the data in a List of MessageViewModel
     message_list = []
     for j in response['Items']:
         x_date = datetime.datetime.strptime(j['DateTime'], '%Y-%m-%d %H:%M:%S.%f')
-        picture = '/static/messageboard/images/God_100_100.png'
-        message = Message(j['SubmittedBy'], j['Message'], j['Mood'], x_date, picture)
+
+        image_thumbnail_dir = '/static/messageboard/images/thumbnails/'
+        thumbnail_dict = {
+            'Bison': image_thumbnail_dir + 'Bison_ps.jpg',
+            'BlackPuma': image_thumbnail_dir + 'BlackPuma_ps.jpg',
+            'Elk': image_thumbnail_dir + 'Elk_ps.jpg',
+            'Fox': image_thumbnail_dir + 'Fox_ps.jpg',
+            'Gorilla': image_thumbnail_dir + 'Gorilla_ps.jpg',
+            'Grizzly': image_thumbnail_dir + 'Grizzly_ps.jpg',
+            'HairBear': image_thumbnail_dir + 'HairBear_ps.jpg',
+            'Kangaroo': image_thumbnail_dir + 'Kangaroo_ps.jpg',
+            'Lion': image_thumbnail_dir + 'Lion_ps.jpg',
+            'Orca': image_thumbnail_dir + 'Orca_ps.jpg',
+            'Otter': image_thumbnail_dir + 'Otter_ps.jpg',
+            'Owl': image_thumbnail_dir + 'Owl_ps.jpg',
+            'Penguin': image_thumbnail_dir + 'Penguin_ps.jpg',
+            'PolarBear': image_thumbnail_dir + 'PolarBear_ps.jpg',
+            'Puma': image_thumbnail_dir + 'Puma_ps.jpg',
+            'Rabbit': image_thumbnail_dir + 'Rabbit_ps.jpg',
+            'Wolf': image_thumbnail_dir + 'Wolf_ps.jpg',
+            'Yahweh': image_thumbnail_dir + 'Yahweh_ps.jpg',
+        }
+        
+        message = MessageViewModel(j['SubmittedBy'], j['Message'], j['Mood'], x_date, thumbnail_dict[j['SubmittedBy']])
         message_list.append(message)
+
     context = {
         'message_list': message_list,
     }
@@ -87,16 +108,8 @@ def add_post(request):
             message = form.cleaned_data['message']
             mood = form.cleaned_data['mood']
             now = datetime.datetime.now()
-            
-            #######################
-            # Continue here tomorrow
-            # Finish adding to DynamoDB
-            #
-            # Then do the Bootstrap 4 Chat
-            #######################
-            
-            
-            return HttpResponseRedirect('/messageboard/')
+
+            return HttpResponseRedirect('/messageboard/conversation/')
     else:
         message_form = MessageForm()
         context = {
