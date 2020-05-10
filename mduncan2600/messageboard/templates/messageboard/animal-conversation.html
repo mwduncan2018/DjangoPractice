@@ -10,8 +10,6 @@
 {% block body_content %}
 
 <h1>Animal Conversation</h1>
-<p><a href="{% url 'messageboard:add_post' %}">Post Message</a></p>
-
 <div class="animal-chat">
     {% for item in message_list %}
         <div class="row">

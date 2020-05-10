@@ -82,8 +82,10 @@ textarea {
 
 /* For the chat background, borders, and margins on the conversation page */
 .animal-chat {
+    margin-top: 20px;
     background-color: white;
     border: 1px solid black;
+    border-radius: 10px;
 }
 
 .animal-chat .row {
@@ -97,7 +99,17 @@ textarea {
 }
 
 
+/* For the add post page */
+.animal-post {
+    margin-top: 20px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius:10px;
+    padding: 60px 80px;
+}
+
+
 * {
-    outline: 1px solid orange;
+    //outline: 1px solid orange;
 }
 

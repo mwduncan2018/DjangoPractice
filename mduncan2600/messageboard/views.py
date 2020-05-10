@@ -72,19 +72,19 @@ def animal_conversation(request):
         image_thumbnail_dir = '/static/messageboard/images/thumbnails/'
         thumbnail_dict = {
             'Bison': image_thumbnail_dir + 'Bison_ps.jpg',
-            'BlackPuma': image_thumbnail_dir + 'BlackPuma_ps.jpg',
+            'Black Puma': image_thumbnail_dir + 'BlackPuma_ps.jpg',
             'Elk': image_thumbnail_dir + 'Elk_ps.jpg',
             'Fox': image_thumbnail_dir + 'Fox_ps.jpg',
             'Gorilla': image_thumbnail_dir + 'Gorilla_ps.jpg',
             'Grizzly': image_thumbnail_dir + 'Grizzly_ps.jpg',
-            'HairBear': image_thumbnail_dir + 'HairBear_ps.jpg',
+            'Hair Bear': image_thumbnail_dir + 'HairBear_ps.jpg',
             'Kangaroo': image_thumbnail_dir + 'Kangaroo_ps.jpg',
             'Lion': image_thumbnail_dir + 'Lion_ps.jpg',
             'Orca': image_thumbnail_dir + 'Orca_ps.jpg',
             'Otter': image_thumbnail_dir + 'Otter_ps.jpg',
             'Owl': image_thumbnail_dir + 'Owl_ps.jpg',
             'Penguin': image_thumbnail_dir + 'Penguin_ps.jpg',
-            'PolarBear': image_thumbnail_dir + 'PolarBear_ps.jpg',
+            'Polar Bear': image_thumbnail_dir + 'PolarBear_ps.jpg',
             'Puma': image_thumbnail_dir + 'Puma_ps.jpg',
             'Rabbit': image_thumbnail_dir + 'Rabbit_ps.jpg',
             'Wolf': image_thumbnail_dir + 'Wolf_ps.jpg',
@@ -104,11 +104,22 @@ def add_post(request):
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
-            submitted_by = form.cleaned_data['submitted_by']
-            message = form.cleaned_data['message']
-            mood = form.cleaned_data['mood']
-            now = datetime.datetime.now()
-
+            z = form.cleaned_data['submitted_by']
+            print('====================================')
+            print(str(z))
+            print('====================================')
+            (boto3
+                .resource('dynamodb', region_name='us-east-1')
+                .Table('PostSomethingAnimalConversations')
+                .put_item(
+                    Item = {
+                        'SubmittedBy': form.cleaned_data['submitted_by'],
+                        'Message': form.cleaned_data['message'],
+                        'Mood': form.cleaned_data['mood'],
+                        'DateTime': str(datetime.datetime.now()),
+                    }
+                )
+            )
             return HttpResponseRedirect('/messageboard/conversation/')
     else:
         message_form = MessageForm()

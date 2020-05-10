@@ -45,24 +45,24 @@ class MessageForm(forms.Form):
         )
 
     ANIMAL_CHOICES = (
-        ('1', 'Bison'),
-        ('2', 'Black Puma'),
-        ('3', 'Elk'),
-        ('4', 'Fox'),
-        ('5', 'Gorilla'),
-        ('6', 'Grizzly'),
-        ('7', 'Hair Bear'),
-        ('8', 'Kangaroo'),
-        ('9', 'Lion'),
-        ('10', 'Orca'),
-        ('11', 'Otter'),
-        ('12', 'Owl'),
-        ('13', 'Penguin'),
-        ('14', 'Polar Bear'),
-        ('15', 'Puma'),
-        ('16', 'Rabbit'),
-        ('17', 'Wolf'),
-        ('18', 'Yahweh'),
+        ('Bison', 'Bison'),
+        ('Black Puma', 'Black Puma'),
+        ('Elk', 'Elk'),
+        ('Fox', 'Fox'),
+        ('Gorilla', 'Gorilla'),
+        ('Grizzly', 'Grizzly'),
+        ('Hair Bear', 'Hair Bear'),
+        ('Kangaroo', 'Kangaroo'),
+        ('Lion', 'Lion'),
+        ('Orca', 'Orca'),
+        ('Otter', 'Otter'),
+        ('Owl', 'Owl'),
+        ('Penguin', 'Penguin'),
+        ('Polar Bear', 'Polar Bear'),
+        ('Puma', 'Puma'),
+        ('Rabbit', 'Rabbit'),
+        ('Wolf', 'Wolf'),
+        ('Yahweh', 'Yahweh'),
     )
     submitted_by = forms.ChoiceField(
         label = 'Submitted By',
@@ -71,11 +71,11 @@ class MessageForm(forms.Form):
     )
 
     MOOD_CHOICES = (
-        ('1', 'Happy'),
-        ('2', 'Drunk'),
-        ('3', 'Horny'),
-        ('4', 'Trippin Balls'),
-        ('5', 'Angry'),
+        ('Happy', 'Happy'),
+        ('Drunk', 'Drunk'),
+        ('Horny', 'Horny'),
+        ('Trippin Balls', 'Trippin Balls'),
+        ('Angry', 'Angry'),
     )
     mood = forms.ChoiceField(
         label = 'Mood',
