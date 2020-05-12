@@ -87,11 +87,9 @@ textarea {
     border: 1px solid black;
     border-radius: 10px;
 }
-
 .animal-chat .row {
     margin: 40px;
 }
-
 .animal-chat img {
     margin-top: 0px;
     border-radius: 50%;
@@ -109,7 +107,17 @@ textarea {
 }
 
 
+/* For the View Animals page */
+.custom-card-margins {
+    margin-top:15px;
+    margin-bottom:15px;
+}
+.custom-light-text {
+    color: gray;
+}
+
+
 * {
-    //outline: 1px solid orange;
+//    outline: 1px solid orange;
 }
 

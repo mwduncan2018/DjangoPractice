@@ -168,8 +168,7 @@ def animal_conversation(request):
         x_date = datetime.datetime.strptime(j['DateTime'], '%Y-%m-%d %H:%M:%S.%f')
         message = AnimalConversationViewModel(j['SubmittedBy'], j['Message'], j['Mood'], x_date, thumbnail_dict[j['SubmittedBy']])
         message_list.append(message)
-    message_list.sort(key=lambda x: x.datetime, reverse=True)
-    
+
     context = {
         'message_list': message_list,
     }
@@ -178,19 +177,19 @@ def animal_conversation(request):
 
 def view_animals(request):
     class ViewAnimalsViewModel:
-        def __init__(self, name=None, picture=None, title=None, info=None, link=None):
+        def __init__(self, name=None, picture=None, title=None, statement=None, about_link=None):
             self.name = name
             self.picture = picture
-            self.title = title
-            self.info = info
-            self.link = link
+            self.job_title = job_title
+            self.statement = statement
+            self.about_link = about_link
         def __str__(self):
-            return " - ".join([str(self.name), str(self.link)])
+            return " - ".join([str(self.name), str(self.about_link)])
 
     image_dir = '/static/messageboard/images/cards/'
     cards_dict = {
         'Bison': image_dir + 'Bison_ps.jpg',
-        'Black Panther': image_dir + 'BlackPanther_ps.jpg',
+        'Black Puma': image_dir + 'BlackPuma_ps.jpg',
         'Elk': image_dir + 'Elk_ps.jpg',
         'Fox': image_dir + 'Fox_ps.jpg',
         'Gorilla': image_dir + 'Gorilla_ps.jpg',
@@ -211,22 +210,22 @@ def view_animals(request):
 
     card_list = []
     card_list.append(ViewAnimalsViewModel('Bison', cards_dict['Bison'], 'North American Herbivore', '50+ million killed in the 1800s', 'https://en.wikipedia.org/wiki/Bison'))
-    card_list.append(ViewAnimalsViewModel('Black Panther', cards_dict['Black Panther'], 'Carnivore', 'Common in equatorial rainforest', 'https://en.wikipedia.org/wiki/Black_panther'))
-    card_list.append(ViewAnimalsViewModel('Elk', cards_dict['Elk'], 'North American Herbivore', 'Hunted by wolves', 'https://en.wikipedia.org/wiki/Elk'))
-    card_list.append(ViewAnimalsViewModel('Fox', cards_dict['Fox'], 'Omnivorous Mammal', 'Prominent in popular folklore', 'https://en.wikipedia.org/wiki/Fox'))
-    card_list.append(ViewAnimalsViewModel('Grizzly', cards_dict['Grizzly'], 'North American Carnivore', 'Most reside in Alaksa', 'https://en.wikipedia.org/wiki/Grizzly_bear'))
-    card_list.append(ViewAnimalsViewModel('Hair Bear', cards_dict['Hair Bear'], 'Domestic Cat', 'Most active dawn to dusk', 'https://en.wikipedia.org/wiki/Persian_cat'))
-    card_list.append(ViewAnimalsViewModel('Kangaroo', cards_dict['Kangaroo'], 'Marsupial', 'A symbol of Australia', 'https://en.wikipedia.org/wiki/Kangaroo'))
-    card_list.append(ViewAnimalsViewModel('Lion', cards_dict['Lion'], 'Keystone Predator', 'Sexually dimorphic', 'https://en.wikipedia.org/wiki/Lion'))
-    card_list.append(ViewAnimalsViewModel('Orca', cards_dict['Orca'], 'Apex Predator', 'Killer Whale', 'https://en.wikipedia.org/wiki/Killer_whale'))
-    card_list.append(ViewAnimalsViewModel('Otter', cards_dict['Otter'], 'Semiaquatic', 'Related to wolverines', 'https://en.wikipedia.org/wiki/Otter'))
-    card_list.append(ViewAnimalsViewModel('Owl', cards_dict['Owl'], 'Nocturnal Bird of Prey', 'Reverse sexual dimorphism', 'https://en.wikipedia.org/wiki/Owl'))
-    card_list.append(ViewAnimalsViewModel('Penguin', cards_dict['Penguin'], 'Southern Hemisphere', 'Flightless bird', 'https://en.wikipedia.org/wiki/Penguin'))
-    card_list.append(ViewAnimalsViewModel('Polar Bear', cards_dict['Polar Bear'], 'Arctic Circle', 'Largest land carnivore', 'https://en.wikipedia.org/wiki/Polar_bear'))
-    card_list.append(ViewAnimalsViewModel('Puma', cards_dict['Puma'], 'American Carnivore', 'Ambush predator', 'https://en.wikipedia.org/wiki/Cougar'))
-    card_list.append(ViewAnimalsViewModel('Rabbit', cards_dict['Rabbit'], 'Rabbit', 'Owl food', 'https://en.wikipedia.org/wiki/Rabbit'))
-    card_list.append(ViewAnimalsViewModel('Wolf', cards_dict['Wolf'], 'Territorial Carnivore', 'Highly social behavior', 'https://en.wikipedia.org/wiki/Wolf'))
-    card_list.append(ViewAnimalsViewModel('Yahweh', cards_dict['Yahweh'], 'Universe Creator', 'Surprise bitch! I\'m real!', 'https://www.youtube.com/watch?v=Z1BzP1wr234'))
+    card_list.append(ViewAnimalsViewModel('Black Puma', cards_dict['Black Puma'], 'Panther', 'Fav Band = Pantera', 'https://en.wikipedia.org/wiki/Black_panther'))
+    card_list.append(ViewAnimalsViewModel('Elk', cards_dict['Elk'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Fox', cards_dict['Fox'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Grizzly', cards_dict['Grizzly'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Hair Bear', cards_dict['Hair Bear'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Kangaroo', cards_dict['Kangaroo'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Lion', cards_dict['Lion'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Orca', cards_dict['Orca'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Otter', cards_dict['Otter'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Owl', cards_dict['Owl'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Penguin', cards_dict['Penguin'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Polar Bear', cards_dict['Polar Bear'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Puma', cards_dict['Puma'], 'Cougar', 'Known as Mountain Lion in California', 'https://en.wikipedia.org/wiki/Cougar'))
+    card_list.append(ViewAnimalsViewModel('Rabbit', cards_dict['Rabbit'], 'Owl Food', '', ''))
+    card_list.append(ViewAnimalsViewModel('Wolf', cards_dict['Wolf'], '', '', ''))
+    card_list.append(ViewAnimalsViewModel('Yahweh', cards_dict['Yahweh'], 'Universe Creator', 'Surprise bitch! I\'m real!', ''))
 
     context = {
         'card_list': card_list,

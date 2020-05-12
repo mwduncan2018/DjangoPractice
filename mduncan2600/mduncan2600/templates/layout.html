@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{% block title %}Default{% endblock title %} | Anonymous Message Board</title>
+	<title>{% block title %}Default{% endblock title %} | Animal Chat!</title>
 	<meta charset="utf-8" />
 	<meta http-equiv="Content-Language" value="en-US" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,44 +17,42 @@
 <body class="customBackground">
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a id="linkAnimalConversation" class="navbar-brand"
-			href="{% url 'messageboard:animal_conversation' %}">
-			Conversation
-		</a>
-		<button class="navbar-toggler" 
-				type="button" 
-				data-toggle="collapse" 
-				data-target="#navbarSupportedContent" 
-				aria-controls="navbarSupportedContent" 
-				aria-expanded="false" 
-				aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li id="linkAddPost" class="nav-item">
-					<a class="nav-link" href="{% url 'messageboard:add_post' %}">Add Post</a>
-				</li>
-				<li id="linkViewAnimals" class="nav-item">
-					<a class="nav-link" href="{% url 'messageboard:view_animals' %}">View Animals</a>
-				</li>
-				<li id="linkClearConversation" class="nav-item">
-					<a class="nav-link" href="{% url 'messageboard:clear_conversation' %}">Clear Conversation</a>
-				</li>
-				<li id="linkAbout" class="nav-item">
-					<a class="nav-link" href="{% url 'messageboard:about' %}">About</a>
-				</li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" 
-					   type="search" 
-					   placeholder="Search" 
-					   aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-					Search
-				</button>
-			</form>
+		<div class="container">
+			
+			<a id="linkHome" class="navbar-brand"
+				href="{% url 'messageboard:animal_conversation' %}">
+				Home
+			</a>
+			<button class="navbar-toggler" 
+					type="button" 
+					data-toggle="collapse" 
+					data-target="#navbarSupportedContent" 
+					aria-controls="navbarSupportedContent" 
+					aria-expanded="false" 
+					aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li id="linkAnimalConversation" class="nav-item">
+						<a class="nav-link" href="{% url 'messageboard:animal_conversation' %}">Chat</a>
+					</li>
+					<li id="linkAddPost" class="nav-item">
+						<a class="nav-link" href="{% url 'messageboard:add_post' %}">Add Post</a>
+					</li>
+					<li id="linkViewAnimals" class="nav-item">
+						<a class="nav-link" href="{% url 'messageboard:view_animals' %}">View Animals</a>
+					</li>
+					<li id="linkClearConversation" class="nav-item">
+						<a class="nav-link" href="{% url 'messageboard:clear_conversation' %}">Clear Conversation</a>
+					</li>
+					<li id="linkAbout" class="nav-item">
+						<a class="nav-link" href="{% url 'messageboard:about' %}">About</a>
+					</li>
+				</ul>
+			</div>
+
 		</div>
 	</nav>
 

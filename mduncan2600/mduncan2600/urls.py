@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path(r'messageboard/', include(r'messageboard.urls')),
-    path(r'admin/', admin.site.urls),
+    path(r'postsomething/', include(r'messageboard.urls')),
+    #path(r'admin/', admin.site.urls),
 ]

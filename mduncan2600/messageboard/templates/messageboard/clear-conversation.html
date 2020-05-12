@@ -4,19 +4,26 @@
 {% block page_css %}{% endblock page_css %}
 
 {% block page_scripts %}
-<script src="{% static 'messageboard/scripts/edit-page.js' %}"></script>
+<script src="{% static 'messageboard/scripts/clear-conversation-page.js' %}"></script>
 {% endblock page_scripts %}
 
 {% block body_content %}
-<h1>Edit Message</h1>
 
-<p><a href="{% url 'messageboard:index' %}">Back to Home</a></p>
 
-<h4>Message Info</h4>
-<p>{{ message.id }}</p>
-<p>{{ message.submitted_by }}</p>
-<p>{{ message.text }}</p>
-<p>{{ message.mood }}</p>
-<p>{{ message.datetime }}</p>
+<h2 class="text-center" style="color:red">Clear the chat?</h2>
+<br>
+<h4 class="text-center" style="color:red">It will take 15 seconds to delete and recreate the table.</h4>
+<br>
+
+<form action="{% url 'messageboard:clear_conversation' %}" method="post">
+    {% csrf_token %}
+    <div class="text-center">
+        <input class="btn btn-outline-warning my-2 my-sm-0"
+            type="submit" value="Yes" />
+    </div>
+</form>
+
+<br>
+<br>
 
 {% endblock body_content %}
