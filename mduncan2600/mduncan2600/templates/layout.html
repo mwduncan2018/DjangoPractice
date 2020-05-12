@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{% block title %}Default{% endblock title %} | Animal Chat!</title>
+	<title>Animal Chat | {% block title %}Default{% endblock title %}</title>
 	<meta charset="utf-8" />
 	<meta http-equiv="Content-Language" value="en-US" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
 			
 			<a id="linkHome" class="navbar-brand"
 				href="{% url 'messageboard:animal_conversation' %}">
-				Home
+				Post Something
 			</a>
 			<button class="navbar-toggler" 
 					type="button" 
@@ -34,7 +34,7 @@
 			</button>
 			
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
+				<ul class="navbar-nav ml-auto">
 					<li id="linkAnimalConversation" class="nav-item">
 						<a class="nav-link" href="{% url 'messageboard:animal_conversation' %}">Chat</a>
 					</li>

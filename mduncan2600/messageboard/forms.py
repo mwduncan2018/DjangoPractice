@@ -72,13 +72,20 @@ class MessageForm(forms.Form):
 
     MOOD_CHOICES = (
         ('Happy', 'Happy'),
-        ('Sad', 'Sad'),
-        ('Drunk', 'Drunk'),
+        ('Excited', 'Excited'),
+        ('Cheerful', 'Cheerful'),
+        ('Reflective', 'Reflective'),
+        ('Humorous', 'Humorous'),
+        ('Whimsical', 'Whimsical'),
+        ('Romantic', 'Romantic'),
         ('Horny', 'Horny'),
+        ('Violated', 'Violated'),
+        ('High', 'High'),
+        ('Drunk', 'Drunk'),
         ('Trippin Balls', 'Trippin Balls'),
         ('Angry', 'Angry'),
-        ('Violated', 'Violated'),
-        ('Excited', 'Excited'),
+        ('Gloomy', 'Gloomy'),
+        ('Sad', 'Sad'),
         ('Depressed', 'Depressed')
     )
     mood = forms.ChoiceField(

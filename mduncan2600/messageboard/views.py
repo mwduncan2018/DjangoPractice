@@ -44,10 +44,6 @@ def add_post(request):
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
-            z = form.cleaned_data['submitted_by']
-            print('====================================')
-            print(str(z))
-            print('====================================')
             (boto3
                 .resource('dynamodb', region_name='us-east-1')
                 .Table('PostSomethingAnimalConversations')
@@ -217,14 +213,14 @@ def view_animals(request):
     card_list.append(ViewAnimalsViewModel('Grizzly', cards_dict['Grizzly'], 'North American Carnivore', 'Most reside in Alaksa', 'https://en.wikipedia.org/wiki/Grizzly_bear'))
     card_list.append(ViewAnimalsViewModel('Hair Bear', cards_dict['Hair Bear'], 'Domestic Cat', 'Most active dawn to dusk', 'https://en.wikipedia.org/wiki/Persian_cat'))
     card_list.append(ViewAnimalsViewModel('Kangaroo', cards_dict['Kangaroo'], 'Marsupial', 'A symbol of Australia', 'https://en.wikipedia.org/wiki/Kangaroo'))
-    card_list.append(ViewAnimalsViewModel('Lion', cards_dict['Lion'], 'Keystone Predator', 'Sexually dimorphic', 'https://en.wikipedia.org/wiki/Lion'))
-    card_list.append(ViewAnimalsViewModel('Orca', cards_dict['Orca'], 'Apex Predator', 'Killer Whale', 'https://en.wikipedia.org/wiki/Killer_whale'))
+    card_list.append(ViewAnimalsViewModel('Lion', cards_dict['Lion'], 'Keystone Predator', 'Lives in a pride', 'https://en.wikipedia.org/wiki/Lion'))
+    card_list.append(ViewAnimalsViewModel('Orca', cards_dict['Orca'], 'Apex Predator', 'Kills trainers at Sea World', 'https://en.wikipedia.org/wiki/Killer_whale'))
     card_list.append(ViewAnimalsViewModel('Otter', cards_dict['Otter'], 'Semiaquatic', 'Related to wolverines', 'https://en.wikipedia.org/wiki/Otter'))
     card_list.append(ViewAnimalsViewModel('Owl', cards_dict['Owl'], 'Nocturnal Bird of Prey', 'Reverse sexual dimorphism', 'https://en.wikipedia.org/wiki/Owl'))
     card_list.append(ViewAnimalsViewModel('Penguin', cards_dict['Penguin'], 'Southern Hemisphere', 'Flightless bird', 'https://en.wikipedia.org/wiki/Penguin'))
-    card_list.append(ViewAnimalsViewModel('Polar Bear', cards_dict['Polar Bear'], 'Arctic Circle', 'Largest land carnivore', 'https://en.wikipedia.org/wiki/Polar_bear'))
+    card_list.append(ViewAnimalsViewModel('Polar Bear', cards_dict['Polar Bear'], 'Arctic Predator', 'Largest land carnivore', 'https://en.wikipedia.org/wiki/Polar_bear'))
     card_list.append(ViewAnimalsViewModel('Puma', cards_dict['Puma'], 'American Carnivore', 'Ambush predator', 'https://en.wikipedia.org/wiki/Cougar'))
-    card_list.append(ViewAnimalsViewModel('Rabbit', cards_dict['Rabbit'], 'Rabbit', 'Owl food', 'https://en.wikipedia.org/wiki/Rabbit'))
+    card_list.append(ViewAnimalsViewModel('Rabbit', cards_dict['Rabbit'], 'Small Herbivore', 'Owl food', 'https://en.wikipedia.org/wiki/Rabbit'))
     card_list.append(ViewAnimalsViewModel('Wolf', cards_dict['Wolf'], 'Territorial Carnivore', 'Highly social behavior', 'https://en.wikipedia.org/wiki/Wolf'))
     card_list.append(ViewAnimalsViewModel('Yahweh', cards_dict['Yahweh'], 'Universe Creator', 'Surprise bitch! I\'m real!', 'https://www.youtube.com/watch?v=Z1BzP1wr234'))
 
