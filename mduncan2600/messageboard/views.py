@@ -133,7 +133,7 @@ def animal_conversation(request):
     image_dir = '/static/messageboard/images/thumbnails/'
     thumbnail_dict = {
         'Bison': image_dir + 'Bison_ps.jpg',
-        'Black Puma': image_dir + 'BlackPuma_ps.jpg',
+        'Black Puma': image_dir + 'BlackPanther_ps.jpg',
         'Elk': image_dir + 'Elk_ps.jpg',
         'Fox': image_dir + 'Fox_ps.jpg',
         'Gorilla': image_dir + 'Gorilla_ps.jpg',
