@@ -18,5 +18,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path(r'postsomething/', include(r'messageboard.urls')),
+    path(r'', include(r'messageboard.urls')),
     #path(r'admin/', admin.site.urls),
+
 ]
