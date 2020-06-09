@@ -1,0 +1,119 @@
+	STEPS HERE for AWS Ubuntu 18
+	# python3 is already installed
+	# git is already installed
+	
+	# update Ubuntu
+	sudo apt-get update
+	
+	# install pip3
+	sudo apt-get install python3-pip -y
+
+	# install python virtual env
+	sudo apt-get install python3-venv -y
+	
+	# install apache2
+	sudo apt-get install apache2 -y
+	
+	# install libapache2-mod-wsgi-py3
+	sudo apt-get install libapache2-mod-wsgi-py3 -y
+	
+	# make a 'django_project' directory
+	mkdir /home/ubuntu/django_project
+	
+	# create a virtual env in the 'django_project' directory
+	cd django_project
+	python3 -m venv venv
+	
+	# enable the virtual env
+	source venv/bin/activate
+	
+	# install packages --> django==2.1.1
+	pip3 install django==2.1.1
+	
+	# create a django project
+	# the . puts the manage.py in the current directory
+	django-admin  startproject my_django_project .
+	
+	# add to 'settings.py'
+	# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+	sudo nano my_django_project/settings.py
+
+	# migrate
+	python3 manage.py migrate
+	
+	# create a super user
+	python3 manage.py createsuperuser
+	
+	# collect static files
+	python3 manage.py collectstatic
+	
+	# deactivate the virtual env
+	deactivate
+	
+	# create a virtual host for apache
+	sudo nano /etc/apache2/sites-available/djangoproject.conf	
+		<VirtualHost *:80>
+			ServerAdmin admin@djangoproject.localhost
+			ServerName djangoproject.localhost
+			ServerAlias www.djangoproject.localhost
+			DocumentRoot /home/ubuntu/django_project
+			ErrorLog ${APACHE_LOG_DIR}/error.log
+			CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+			Alias /static /home/ubuntu/django_project/static
+			<Directory /home/ubuntu/django_project/static>
+				Require all granted
+			</Directory>
+
+			Alias /static /home/ubuntu/django_project/media
+			<Directory /home/ubuntu/django_project/media>
+				Require all granted
+			</Directory>
+
+			<Directory /home/ubuntu/django_project/my_django_project>
+				<Files wsgi.py>
+					Require all granted
+				</Files>
+			</Directory>
+			
+			WSGIDaemonProcess django_project python-path=/home/ubuntu/django_project python-home=/home/ubuntu/django_project/venv
+			WSGIProcessGroup django_project
+			WSGIScriptAlias / /home/ubuntu/django_project/my_django_project/wsgi.py
+		</VirtualHost>
+
+	# enable the virtual host file
+	cd /etc/apache2/sites-available
+	sudo a2ensite djangoproject.conf
+
+	# disable the default
+	sudo a2dissite 000-default.conf
+
+	# optional -- edit the host file
+	sudo nano /etc/hosts
+		127.0.0.1 djangoproject.localhost
+
+	# setup ufw
+	# https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
+	sudo ufw allow 'Apache'
+	sudo ufw allow 'Apache Full'
+	sudo ufw allow ssh
+	sudo ufw allow http
+	sudo ufw allow https
+	sudo ufw allow 22
+	sudo ufw allow 443
+	sudo ufw allow 80
+	
+	# set permissions if using SQLite
+	sudo chmod 664 /home/ubuntu/django_project/db.sqlite3
+	sudo chown :www-data /home/ubuntu/django_project/db.sqlite3
+	sudo chown :www-data /home/ubuntu/django_project
+	
+	# check configuration
+	sudo apache2ctl configtest
+	
+	# add AWS IPv4 Public IP to ALLOWED_HOSTS in settings.py
+	sudo nano /home/ubuntu/django_project/my_django_project/settings.py
+		ALLOWED_HOSTS = ['XX.XXX.XXX.XXX',]
+
+	# start apache
+	sudo service apache2 restart
